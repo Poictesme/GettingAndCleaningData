@@ -95,7 +95,7 @@ VARIABLES:
 *features* - Contents of the "features.txt" data file. This data contains the column labels of the different observations in the data set.  
 *activity_labels* - Contents of the "activity_labels.txt" data file. This data links numeric activity labels with descriptive activity names.
 
-### 6. Identifies releavnt columns to extract from the data to meet requirement **Step #2**, us only the measurements of mean and standard deviation 
+### 6. Identifies relevant columns to extract from the data to meet requirement **Step #2**, use only the measurements of mean and standard deviation 
 
 VARIABLES:
 
