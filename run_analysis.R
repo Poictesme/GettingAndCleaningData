@@ -60,5 +60,5 @@ tidy.data<-subset(aggdata,select=-(3:4)) # drops columns 3 and 4, redundant afte
 
 #12. Write aggregated tidy data out to file in the original working directory.
 setwd(workingDir)
-write.table(tidy.data,"tidy.data.txt",sep="\t")
+write.table(tidy.data,"tidy.data.txt",row.names=FALSE)
 
