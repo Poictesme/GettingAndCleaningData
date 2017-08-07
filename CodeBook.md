@@ -82,11 +82,11 @@ VARIABLES:
 
 VARIABLES:
 
-*combined.train* - Interim processing variable that contains the X train data with the numeric activity labels from the Y train data prepended as the first column.
+*combined.train* - Interim processing variable that contains the X train data with the numeric activity labels from the Y train data prepended as the second column and the subject id prepended as the first column.
 
-*combined.test* - Interim processing variable that contains the X test data with the numeric activity labels from the Y test data prepended as the first column.
+*combined.test* - Interim processing variable that contains the X test data with the numeric activity labels from the Y test data prepended as as the second column and the subject id prepended as the first column.
 
-*combined.data* - This is both the train and test data sets, with prepended the column of numeric activity labels, combined into a single unified data set.
+*combined.data* - This is both the train and test data sets, with prepended columns of subject id and numeric activity labels, combined into a single unified data set.
 
 ### 5. Read the feature labels and descriptive activity labels.
 
@@ -95,7 +95,8 @@ VARIABLES:
 *features* - Contents of the "features.txt" data file. This data contains the column labels of the different observations in the data set.  
 *activity_labels* - Contents of the "activity_labels.txt" data file. This data links numeric activity labels with descriptive activity names.
 
-### 6. Identifies relevant columns to extract from the data to meet requirement **Step #2**, use only the measurements of mean and standard deviation 
+### 6. Uses grep to identify relevant columns to extract from the data to meet requirement Step #2, use only the measurements of mean and standard deviation 
+ 
 
 VARIABLES:
 
@@ -104,11 +105,12 @@ VARIABLES:
 ### 7.  We also want to keep the two newly-added columns (subject and activity label) that we created with the combined data steps, so we create extract.vector, which includes those two columns, then we add the relevant columns selected above and use the extract.vector to pull the relevant data subset out of the combined.data
 
 *extract.vector* - interim variable that contains relevant columns to extract from combined data, includes relevant.cols and additional subject and activity label columns.
+
 *extracted.data* - interim data frame that contains only the data from the relevant (extracted) columns of the original combined data.
 
 ### 8. Requirement **Step #3**, use descriptive activity names.  Converts numeric activity labels from y_ data to descriptive names using activity_labels as a lookup table.
 
-### 9. Requirements **Step #4**, appropriately labels with data set with descriptive variable names.  Uses the descriptive names from the relevant columns extraction (relevant.cols) to label the observation columns, with the following adjustments: a) eliminates dashes from names, b) enhances readability of mean and std by relacing with "Mean" and "StdDev", c) expands t or f in variable name to "time" and "freq"
+### 9. Requirement **Step #4**, appropriately labels data set with descriptive variable names.  Uses the descriptive names from the relevant columns extraction (relevant.cols) to label the observation columns, with the following adjustments: a) eliminates dashes from names, b) enhances readability of mean and std by relacing with "Mean" and "StdDev", c) expands t or f in variable name to "time" and "freq"
 
 VARIABLES:
 
@@ -117,6 +119,7 @@ VARIABLES:
 ### 10. Creates a vector with the new descriptions that includes the two prepended columns for subject id and activity label, then applys the new descriptive labels to the extracted.data data set.
 
 VARIABLES:
+
 *newcolnames* - temporary variable used in processing the renaming of descriptive variable names, with the subject and activity column names included (prepended)
 
 ### 11.  Requirements **Step #5** - create second independent tidy data set with the average of each variable for each activity and each subject.  Uses aggregate command to apply the mean function by aggregate of activity and subject.  This data is then stored in the variable tidy.data after dropping two redundant columns created by the aggregate operation.
@@ -124,11 +127,12 @@ VARIABLES:
 VARIABLES:
 
 *aggdata* - temporary variable used in the processing the aggregate command, contains the mean function applied on data aggregated by activity and subject.
+
 *tidy.data* - the final data product of tidy data
 
 ### 12. Write aggregated tidy data out to file
 
-###OUTPUT:
+### OUTPUT:
 
 *tidy.data.txt* - this output file contains the final data product tidy.data with an arbitrary .txt extension.  Chose to write out with default separator.
 

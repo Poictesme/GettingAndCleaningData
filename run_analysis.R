@@ -30,7 +30,7 @@ setwd(paste0(workingDir,"/UCI HAR Dataset"))
 features<-read.table("features.txt")
 activity_labels<-read.table("activity_labels.txt")
 
-#6. Identifies relevant columns to extract (using grep) from the data to meet requirement Step #2, use only the measurements of mean and standard deviation 
+#6. Uses grep to identify relevant columns to extract from the data to meet requirement Step #2, use only the measurements of mean and standard deviation 
 relevant.cols<-subset(features,grepl("mean[[:punct:]]|std",features$V2)) #remove meanFreq (mean followed by punctuation character)
 
 #7.  We also want to keep the two newly-added columns (subject and activity label) that we created with the combined data steps, so we create extract.vector, which includes those two columns, then we add the relevant columns selected above and use the extract.vector to pull the relevant data subset out of the combined.data
